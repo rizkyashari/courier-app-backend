@@ -1,0 +1,2672 @@
+swagger: '2.0'
+info:
+  version: '1.0'
+  title: CourierExpress OpenAPI
+  description: ''
+  contact: {}
+host: localhost:8080
+basePath: /api
+securityDefinitions: {}
+schemes:
+- "https"
+- "http"
+consumes:
+- application/json
+produces:
+- application/json
+paths:
+  /auth/register:
+    post:
+      description: ''
+      summary: Register
+      tags:
+      - Auth Routes
+      operationId: Register
+      deprecated: false
+      produces:
+      - application/json
+      consumes:
+      - application/json
+      parameters:
+      - name: Body
+        in: body
+        required: true
+        description: ''
+        schema:
+          $ref: '#/definitions/RegisterRequest'
+      - name: Content-Type
+        in: header
+        required: false
+        enum:
+        - application/json
+        type: string
+        description: ''
+      responses:
+        '201':
+          description: OK
+          schema:
+            $ref: '#/definitions/RegisterResponse'
+          headers: {}
+        '404':
+          description: Page not found
+        '409':
+          description: Duplicate email
+      security: []
+  /auth/login:
+    post:
+      description: ''
+      summary: Login
+      tags:
+      - Auth Routes
+      operationId: Login
+      deprecated: false
+      produces:
+      - application/json
+      consumes:
+      - application/json
+      parameters:
+      - name: Body
+        in: body
+        required: true
+        description: ''
+        schema:
+          $ref: '#/definitions/LoginRequest'
+      - name: Content-Type
+        in: header
+        required: false
+        enum:
+        - application/json
+        type: string
+        description: ''
+      - name: Authorization
+        in: header
+        required: true
+        type: string
+        description: ''
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/LoginResponse'
+          headers: {}
+        '404':
+          description: Page not found
+      security: []
+  /user/profile/{id}:
+    put:
+      description: ''
+      summary: Update User Profile
+      tags:
+      - User Profiles Routes
+      operationId: UserProfile
+      deprecated: false
+      produces:
+      - application/json
+      consumes:
+      - application/json
+      parameters:
+      - name: id
+        in: path
+        description: ID of user to return
+        required: true
+        type: integer
+        format: int64
+      - name: Body
+        in: body
+        required: true
+        description: ''
+        schema:
+          $ref: '#/definitions/UserProfileRequest'
+      - name: Content-Type
+        in: header
+        required: false
+        enum:
+        - application/json
+        type: string
+        description: ''
+      - name: Authorization
+        in: header
+        required: true
+        type: string
+        description: ''
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/UpdateProfileResponse'
+          headers: {}
+        '404':
+          description: Page not found
+        '400':
+          description: No token found
+      security: []
+  /user/profile:
+    get:
+      description: ''
+      summary: Get User Profile
+      tags:
+      - User Profiles Routes
+      operationId: GetUserProfile
+      deprecated: false
+      produces:
+      - application/json
+      parameters:
+      - name: Authorization
+        in: header
+        required: true
+        type: string
+        description: ''
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/GetProfileResponse'
+          headers: {}
+        '404':
+          description: Page not found
+        '400':
+          description: No token found
+      security: []
+  /user/address/{id}:
+    put:
+      description: ''
+      summary: Update Address By ID
+      tags:
+      - Address Routes
+      operationId: UpdateAddressByID
+      deprecated: false
+      produces:
+      - application/json
+      consumes:
+      - application/json
+      parameters:
+      - name: id
+        in: path
+        description: ID of address to return
+        required: true
+        type: integer
+        format: int64
+      - name: Body
+        in: body
+        required: true
+        description: ''
+        schema:
+          $ref: '#/definitions/AddressByIDRequest'
+      - name: Content-Type
+        in: header
+        required: false
+        enum:
+        - application/json
+        type: string
+        description: ''
+      - name: Authorization
+        in: header
+        required: true
+        type: string
+        description: ''
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/UpdateAddressResponse'
+          headers: {}
+        '404':
+          description: Page not found
+        '400':
+          description: No token found
+      security: []
+    get:
+      description: ''
+      summary: Get Address By ID
+      tags:
+      - Address Routes
+      operationId: GetAddressByID
+      deprecated: false
+      produces:
+      - application/json
+      parameters:
+      - name: id
+        in: path
+        description: ID of address to return
+        required: true
+        type: integer
+        format: int64
+      - name: Authorization
+        in: header
+        required: true
+        type: string
+        description: ''
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/GetAddressByIDResponse'
+          headers: {}
+        '404':
+          description: Page not found
+        '400':
+          description: No token found
+      security: []
+    delete:
+      description: ''
+      summary: Delete Address By ID
+      tags:
+      - Address Routes
+      operationId: DeleteAddressByID
+      deprecated: false
+      produces:
+      - application/json
+      parameters:
+      - name: id
+        in: path
+        description: ID of address to return
+        required: true
+        type: integer
+        format: int64
+      - name: Authorization
+        in: header
+        required: true
+        type: string
+        description: ''
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/DeleteAddressResponse'
+          headers: {}
+        '404':
+          description: Page not found
+        '400':
+          description: No token found
+      security: []
+  /user/address:
+    get:
+      description: ''
+      summary: Get All Addresses
+      tags:
+      - Address Routes
+      operationId: Address
+      deprecated: false
+      produces:
+      - application/json
+      parameters:
+      - name: Authorization
+        in: header
+        required: true
+        type: string
+        description: ''
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/GetAddressResponse'
+          headers: {}
+        '404':
+          description: Page not found
+        '400':
+          description: No token found
+      security: []
+    post:
+      description: ''
+      summary: Post User Address
+      tags:
+      - Address Routes
+      operationId: PostAddress
+      deprecated: false
+      produces:
+      - application/json
+      consumes:
+      - application/json
+      parameters:
+      - name: Body
+        in: body
+        required: true
+        description: ''
+        schema:
+          $ref: '#/definitions/AddressRequest'
+      - name: Content-Type
+        in: header
+        required: false
+        enum:
+        - application/json
+        type: string
+        description: ''
+      - name: Authorization
+        in: header
+        required: true
+        type: string
+        description: ''
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/CreateAddressResponse'
+          headers: {}
+        '404':
+          description: Page not found
+        '400':
+          description: No token found
+      security: []
+  /user/shipping/{id}:
+    delete:
+      description: ''
+      summary: Delete Shipping By ID
+      tags:
+      - Shipping Routes
+      operationId: ShippingByID
+      deprecated: false
+      produces:
+      - application/json
+      parameters:
+      - name: id
+        in: path
+        description: ID of shipping to return
+        required: true
+        type: integer
+        format: int64
+      - name: Authorization
+        in: header
+        required: true
+        type: string
+        description: ''
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/DeleteShippingResponse'
+          headers: {}
+        '404':
+          description: Page not found
+        '400':
+          description: No token found
+      security: []
+    get:
+      description: ''
+      summary: Get Shipping By ID
+      tags:
+      - Shipping Routes
+      operationId: ShippingByID1
+      deprecated: false
+      produces:
+      - application/json
+      parameters:
+      - name: id
+        in: path
+        description: ID of shipping to return
+        required: true
+        type: integer
+        format: int64
+      - name: Authorization
+        in: header
+        required: true
+        type: string
+        description: ''
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/GetShippingByIDResponse'
+          headers: {}
+        '404':
+          description: Page not found
+        '400':
+          description: No token found
+      security: []
+    put:
+      description: ''
+      summary: Update Shipping By ID
+      tags:
+      - Shipping Routes
+      operationId: PutShippingByID
+      deprecated: false
+      produces:
+      - application/json
+      consumes:
+      - application/json
+      parameters:
+      - name: id
+        in: path
+        description: ID of shipping to return
+        required: true
+        type: integer
+        format: int64
+      - name: Body
+        in: body
+        required: true
+        description: ''
+        schema:
+          $ref: '#/definitions/ShippingByIDRequest'
+      - name: Content-Type
+        in: header
+        required: false
+        enum:
+        - application/json
+        type: string
+        description: ''
+      - name: Authorization
+        in: header
+        required: true
+        type: string
+        description: ''
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/UpdateShippingResponse'
+          headers: {}
+        '404':
+          description: Page not found
+        '400':
+          description: No token found
+      security: []
+  /user/shipping?page={id}:
+    get:
+      description: ''
+      summary: Get All Shippings
+      tags:
+      - Shipping Routes
+      operationId: Shipping
+      deprecated: false
+      produces:
+      - application/json
+      parameters:
+      - name: page
+        in: query
+        description: page of shipping to return
+        required: true
+        type: integer
+        format: int64
+      - name: Authorization
+        in: header
+        required: true
+        type: string
+        description: ''
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/GetShippingResponse'
+          headers: {}
+        '404':
+          description: Page not found
+        '400':
+          description: No token found
+      security: []
+    post:
+      description: ''
+      summary: Shipping
+      tags:
+      - Shipping Routes
+      operationId: PostShipping
+      deprecated: false
+      produces:
+      - application/json
+      consumes:
+      - application/json
+      parameters:
+      - name: Body
+        in: body
+        required: true
+        description: ''
+        schema:
+          $ref: '#/definitions/ShippingRequest'
+      - name: Content-Type
+        in: header
+        required: false
+        enum:
+        - application/json
+        type: string
+        description: ''
+      - name: Authorization
+        in: header
+        required: true
+        type: string
+        description: ''
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/PostShippingResponse'
+          headers: {}
+        '404':
+          description: Page not found
+        '400':
+          description: No token found
+  /user/top-up:
+    post:
+      description: ''
+      summary: Top Up
+      tags:
+      - Top Up Routes
+      operationId: TopUp
+      deprecated: false
+      produces:
+      - application/json
+      consumes:
+      - application/json
+      parameters:
+      - name: Body
+        in: body
+        required: true
+        description: ''
+        schema:
+          $ref: '#/definitions/TopUpRequest'
+      - name: Content-Type
+        in: header
+        required: false
+        enum:
+        - application/json
+        type: string
+        description: ''
+      - name: Authorization
+        in: header
+        required: true
+        type: string
+        description: ''
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/TopUpResponse'
+          headers: {}
+        '404':
+          description: Page not found
+        '400':
+          description: No token found
+      security: []
+  /user/payment:
+    get:
+      description: ''
+      summary: Get All User Payments
+      tags:
+      - Payment Routes
+      operationId: AllPayment
+      deprecated: false
+      produces:
+      - application/json
+      parameters:
+      - name: Authorization
+        in: header
+        required: true
+        type: string
+        description: ''
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/GetAllPaymentsResponse'
+          headers: {}
+        '404':
+          description: Page not found
+        '400':
+          description: No token found
+      security: []
+    post:
+      description: ''
+      summary: Payment with Promo
+      tags:
+      - Payment Routes
+      operationId: PaymentwithPromo
+      deprecated: false
+      produces:
+      - application/json
+      consumes:
+      - application/json
+      parameters:
+      - name: Body
+        in: body
+        required: true
+        description: ''
+        schema:
+          $ref: '#/definitions/PaymentwithPromoRequest'
+      - name: Content-Type
+        in: header
+        required: false
+        enum:
+        - application/json
+        type: string
+        description: ''
+      - name: Authorization
+        in: header
+        required: true
+        type: string
+        description: ''
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/PaymentResponse'
+          headers: {}
+        '404':
+          description: Page not found
+        '400':
+          description: No token found
+      security: []
+  /user/user-promo/{id}:
+    put:
+      description: ''
+      summary: User Promo By ID
+      tags:
+      - User Promo Routes
+      operationId: UserPromoByID
+      deprecated: false
+      produces:
+      - application/json
+      consumes:
+      - application/json
+      parameters:
+      - name: id
+        in: path
+        description: ID of user promo to return
+        required: true
+        type: integer
+        format: int64
+      - name: Body
+        in: body
+        required: true
+        description: ''
+        schema:
+          $ref: '#/definitions/UserPromoByIDRequest'
+      - name: Content-Type
+        in: header
+        required: false
+        enum:
+        - application/json
+        type: string
+        description: ''
+      - name: Authorization
+        in: header
+        required: true
+        type: string
+        description: ''
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/UpdateUserPromoResponse'
+          headers: {}
+        '404':
+          description: Page not found
+        '400':
+          description: No token found
+      security: []
+  /user/user-promo:
+    get:
+      description: ''
+      summary: User Promos
+      tags:
+      - User Promo Routes
+      operationId: UserPromos
+      deprecated: false
+      produces:
+      - application/json
+      parameters:
+      - name: Authorization
+        in: header
+        required: true
+        type: string
+        description: ''
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/GetAllUserPromosResponse'
+          headers: {}
+        '404':
+          description: Page not found
+        '400':
+          description: No token found
+      security: []
+    post:
+      description: ''
+      summary: User Promos
+      tags:
+      - User Promo Routes
+      operationId: PostUserPromos
+      deprecated: false
+      produces:
+      - application/json
+      consumes:
+      - application/json
+      parameters:
+      - name: Body
+        in: body
+        required: true
+        description: ''
+        schema:
+          $ref: '#/definitions/UserPromosRequest'
+      - name: Content-Type
+        in: header
+        required: false
+        enum:
+        - application/json
+        type: string
+        description: ''
+      - name: Authorization
+        in: header
+        required: true
+        type: string
+        description: ''
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/PostUserPromoResponse'
+          headers: {}
+        '404':
+          description: Page not found
+        '400':
+          description: No token found
+      security: []
+  /admin/address:
+    get:
+      description: ''
+      summary: Admin Get All Addresses of Users
+      tags:
+      - Admin Manage Addresses
+      operationId: AllAddressesofUsers
+      deprecated: false
+      produces:
+      - application/json
+      parameters:
+      - name: Authorization
+        in: header
+        required: true
+        type: string
+        description: ''
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/GetAllUserAddressesResponse'
+          headers: {}
+        '404':
+          description: Page not found
+        '400':
+          description: No token found
+      security: []
+  /admin/shipping/{id}:
+    put:
+      description: ''
+      summary: Admin Edit Shipping Status
+      tags:
+      - Admin Manage Shippings
+      operationId: ShippingStatus
+      deprecated: false
+      produces:
+      - application/json
+      consumes:
+      - application/json
+      parameters:
+      - name: id
+        in: path
+        description: ID of user shipping to return
+        required: true
+        type: integer
+        format: int64
+      - name: Body
+        in: body
+        required: true
+        description: ''
+        schema:
+          $ref: '#/definitions/ShippingStatusRequest'
+      - name: Content-Type
+        in: header
+        required: false
+        enum:
+        - application/json
+        type: string
+        description: ''
+      - name: Authorization
+        in: header
+        required: true
+        type: string
+        description: ''
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/AdminUpdateShippingResponse'
+          headers: {}
+        '404':
+          description: Page not found
+        '400':
+          description: No token found
+      security: []
+  /admin/shipping:
+    get:
+      description: ''
+      summary: All Shippings of Users
+      tags:
+      - Admin Manage Shippings
+      operationId: AllShippingsofUsers
+      deprecated: false
+      produces:
+      - application/json
+      parameters:
+      - name: Authorization
+        in: header
+        required: true
+        type: string
+        description: ''
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/AdminGetAllShippingsResponse'
+          headers: {}
+        '404':
+          description: Page not found
+        '400':
+          description: No token found
+      security: []
+  /admin/promo/{id}:
+    get:
+      description: ''
+      summary: Get Promo By ID
+      tags:
+      - Admin Manage Promos
+      operationId: PromoByID
+      deprecated: false
+      produces:
+      - application/json
+      parameters:
+      - name: id
+        in: path
+        description: ID of promo to return
+        required: true
+        type: integer
+        format: int64
+      - name: Authorization
+        in: header
+        required: true
+        type: string
+        description: ''
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/AdminGetPromoByIDResponse'
+          headers: {}
+        '404':
+          description: Page not found
+        '400':
+          description: No token found
+      security: []
+    put:
+      description: ''
+      summary: Admin Update Promo
+      tags:
+      - Admin Manage Promos
+      operationId: Promo
+      deprecated: false
+      produces:
+      - application/json
+      consumes:
+      - application/json
+      parameters:
+      - name: id
+        in: path
+        description: ID of promo to return
+        required: true
+        type: integer
+        format: int64
+      - name: Body
+        in: body
+        required: true
+        description: ''
+        schema:
+          $ref: '#/definitions/PromoRequest'
+      - name: Content-Type
+        in: header
+        required: false
+        enum:
+        - application/json
+        type: string
+        description: ''
+      - name: Authorization
+        in: header
+        required: true
+        type: string
+        description: ''
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/AdminUpdatePromoResponse'
+          headers: {}
+        '404':
+          description: Page not found
+        '400':
+          description: No token found
+      security: []
+  /admin/promo:
+    get:
+      description: ''
+      summary: All Promos
+      tags:
+      - Admin Manage Promos
+      operationId: AllPromos
+      deprecated: false
+      produces:
+      - application/json
+      parameters:
+      - name: Authorization
+        in: header
+        required: true
+        type: string
+        description: ''
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/GetAllPromosResponse'
+          headers: {}
+        '404':
+          description: Page not found
+      security: []
+  /admin/user/referrals:
+    get:
+      description: ''
+      summary: All Users
+      tags:
+      - Admin Manage Referrals
+      operationId: AllUsers
+      deprecated: false
+      produces:
+      - application/json
+      parameters:
+      - name: Authorization
+        in: header
+        required: true
+        type: string
+        description: ''
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/GetReferralsResponse'
+          headers: {}
+        '404':
+          description: Page not found
+        '400':
+          description: No token found
+      security: []
+definitions:
+  RegisterRequest:
+    title: RegisterRequest
+    example:
+      name: Doni Ahmad
+      email: doniahmad@gmail.com
+      password: doni1234
+      referral_code: DANI6978
+    type: object
+    properties:
+      name:
+        type: string
+      email:
+        type: string
+      password:
+        type: string
+      referral_code:
+        type: string
+    required:
+    - name
+    - email
+    - password
+  LoginRequest:
+    title: LoginRequest
+    example:
+      email: doniahmad@gmail.com
+      password: doni1234
+    type: object
+    properties:
+      email:
+        type: string
+      password:
+        type: string
+    required:
+    - email
+    - password
+  UserProfileRequest:
+    title: UserProfileRequest
+    example:
+      name: Doni Ahmad
+      email: doniahmad@email.com
+      phone_number: 6285722320622
+      photos: https://res.cloudinary.com/dmlzx9yxe/image/upload/v1669964733/wazdcvhu1lzoqp6v6lqo.jpg
+    type: object
+    properties:
+      name:
+        type: string
+      email:
+        type: string
+      phone_number:
+        type: integer
+        format: int64
+      photos:
+        type: string
+    required:
+    - name
+    - email
+    - phone_number
+    - photos
+  AddressByIDRequest:
+    title: AddressByIDRequest
+    example:
+      id: 13
+      full_address: Gang Rawa Simprug VIII
+      recipient_name: Dedy Irawan
+      recipient_phone_number: 6285722320622
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int32
+      full_address:
+        type: string
+      recipient_name:
+        type: string
+      recipient_phone_number:
+        type: integer
+        format: int64
+    required:
+    - id
+    - full_address
+    - recipient_name
+    - recipient_phone_number
+  AddressRequest:
+    title: AddressRequest
+    example:
+      full_address: Jl. Sopo Del
+      recipient_name: Rizky Ashari
+      recipient_phone_number: 6285722326522
+    type: object
+    properties:
+      full_address:
+        type: string
+      recipient_name:
+        type: string
+      recipient_phone_number:
+        type: integer
+        format: int64
+    required:
+    - full_address
+    - recipient_name
+    - recipient_phone_number
+  ShippingByIDRequest:
+    title: ShippingByIDRequest
+    example:
+      id: 28
+      user_id: 4
+      size_id: 1
+      address_id: 2
+      payment_id: 95
+      category_id: 1
+      add_on_id: 1
+      shipping_status: 'Package is arrived in destination address: done'
+      review: OK Boss
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int32
+      user_id:
+        type: integer
+        format: int32
+      size_id:
+        type: integer
+        format: int32
+      address_id:
+        type: integer
+        format: int32
+      payment_id:
+        type: integer
+        format: int32
+      category_id:
+        type: integer
+        format: int32
+      add_on_id:
+        type: integer
+        format: int32
+      shipping_status:
+        type: string
+      review:
+        type: string
+    required:
+    - id
+    - user_id
+    - size_id
+    - address_id
+    - payment_id
+    - category_id
+    - add_on_id
+    - shipping_status
+    - review
+  ShippingRequest:
+    title: ShippingRequest
+    example:
+      size_id: 3
+      address_id: 13
+      category_id: 2
+      add_on_id: 1
+    type: object
+    properties:
+      size_id:
+        type: integer
+        format: int32
+      address_id:
+        type: integer
+        format: int32
+      category_id:
+        type: integer
+        format: int32
+      add_on_id:
+        type: integer
+        format: int32
+    required:
+    - size_id
+    - address_id
+    - category_id
+    - add_on_id
+  TopUpRequest:
+    title: TopUpRequest
+    example:
+      source_of_fund_id: 1
+      amount: 200000
+    type: object
+    properties:
+      source_of_fund_id:
+        type: integer
+        format: int32
+      amount:
+        type: integer
+        format: int32
+    required:
+    - source_of_fund_id
+    - amount
+  PaymentwithPromoRequest:
+    title: PaymentwithPromoRequest
+    example:
+      shipping_id: 67
+      user_promo_id: 1739
+    type: object
+    properties:
+      shipping_id:
+        type: integer
+        format: int32
+      user_promo_id:
+        type: integer
+        format: int32
+    required:
+    - shipping_id
+    - user_promo_id
+  PaymentRequest:
+    title: PaymentRequest
+    example:
+      shipping_id: 3
+      description: Kirim paket handphone
+    type: object
+    properties:
+      shipping_id:
+        type: integer
+        format: int32
+      description:
+        type: string
+    required:
+    - shipping_id
+    - description
+  UserPromoByIDRequest:
+    title: UserPromoByIDRequest
+    example:
+      id: 5
+      user_id: 3
+      promo_id: 1
+      status: 1
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int32
+      user_id:
+        type: integer
+        format: int32
+      promo_id:
+        type: integer
+        format: int32
+      status:
+        type: integer
+        format: int32
+    required:
+    - id
+    - user_id
+    - promo_id
+    - status
+  UserPromosRequest:
+    title: UserPromosRequest
+    example:
+      user_id: 2
+      promo_id: 2
+    type: object
+    properties:
+      user_id:
+        type: integer
+        format: int32
+      promo_id:
+        type: integer
+        format: int32
+    required:
+    - user_id
+    - promo_id
+  ShippingStatusRequest:
+    title: ShippingStatusRequest
+    example:
+      id: 65
+      user_id: 4
+      size_id: 1
+      address_id: 23
+      payment_id: 64
+      category_id: 1
+      add_on_id: 2
+      shipping_status: "Package is arrived in destination address: done"
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int32
+      user_id:
+        type: integer
+        format: int32
+      size_id:
+        type: integer
+        format: int32
+      address_id:
+        type: integer
+        format: int32
+      payment_id:
+        type: integer
+        format: int32
+      category_id:
+        type: integer
+        format: int32
+      add_on_id:
+        type: integer
+        format: int32
+      shipping_status:
+        type: string
+    required:
+    - id
+    - user_id
+    - size_id
+    - address_id
+    - payment_id
+    - category_id
+    - add_on_id
+    - shipping_status
+  PromoRequest:
+    title: PromoRequest
+    example:
+      id: 1
+      name: 40% discount vouchers
+      min_fee: 20000
+      max_discount: 15000
+      discount: 40
+      quota: 100
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int32
+      name:
+        type: string
+      min_fee:
+        type: integer
+        format: int32
+      max_discount:
+        type: integer
+        format: int32
+      discount:
+        type: integer
+        format: int32
+      quota:
+        type: integer
+        format: int32
+    required:
+    - id
+    - name
+    - min_fee
+    - max_discount
+    - discount
+    - quota
+  RegisterResponse:
+    title: RegisterResponse
+    example:
+      id: 4
+      name: Doni Ahmad
+      email: doniahmad@gmail.com
+      token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNCIsImV4cCI6MTcwMTUxMjQ5NywiaWF0IjoxNjY5OTc2NDk3LCJpc3MiOiJtb2hyaXpreSJ9.SCpXI5hkOH-zAku-sI4kAw67xuNN9BHGTq3fq_zFzzY
+      phone_number: 0
+      role: User
+      referral_code: DONI3061
+      balance: 0
+      photos: ""
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int64
+      name:
+        type: string
+      email:
+        type: string
+      token:
+        type: string
+      phone_number:
+        type: integer
+        format: int64
+      role:
+        type: string
+      referral_code:
+        type: string
+      balance:
+        type: integer
+        format: int64
+      photos:
+        type: string
+  LoginResponse:
+    title: LoginResponse
+    example:
+      id: 4
+      name: Doni Ahmad
+      email: doniahmad@gmail.com
+      token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNCIsImV4cCI6MTcwMTUxMjQ5NywiaWF0IjoxNjY5OTc2NDk3LCJpc3MiOiJtb2hyaXpreSJ9.SCpXI5hkOH-zAku-sI4kAw67xuNN9BHGTq3fq_zFzzY
+      phone_number: 0
+      role: User
+      referral_code: DONI3061
+      balance: 0
+      photos: ""
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int64
+      name:
+        type: string
+      email:
+        type: string
+      token:
+        type: string
+      phone_number:
+        type: integer
+        format: int64
+      role:
+        type: string
+      referral_code:
+        type: string
+      balance:
+        type: integer
+        format: int64
+      photos:
+        type: string
+  UpdateProfileResponse:
+    title: UpdateProfileResponse
+    example:
+      id: 4
+      name: Doni Ahmad
+      email: doniahmad@email.com
+      phone_number: 6285722320622
+      photos: https://res.cloudinary.com/dmlzx9yxe/image/upload/v1669964733/wazdcvhu1lzoqp6v6lqo.jpg
+      password: $2a$04$l6s24Yyi57EWMKvvzn5UMu1fvYNab/mnmGHlHAvU2Rr1EqURf1gSe
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int64
+      name:
+        type: string
+      email:
+        type: string
+      token:
+        type: string
+      phone_number:
+        type: integer
+        format: int64
+      photos:
+        type: string
+      password:
+        type: string
+  GetProfileResponse:
+    title: GetProfileResponse
+    example:
+      id: 4
+      name: Doni Ahmad
+      email: doniahmad@email.com
+      phone_number: 6285722320622
+      role: User
+      referral_code: DONI3061
+      balance: 0
+      photos: https://res.cloudinary.com/dmlzx9yxe/image/upload/v1669964733/wazdcvhu1lzoqp6v6lqo.jpg
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int64
+      name:
+        type: string
+      email:
+        type: string
+      phone_number:
+        type: integer
+        format: int64
+      role:
+        type: string
+      referral_code:
+        type: string
+      balance:
+        type: integer
+        format: int64
+      photos:
+        type: string
+  CreateAddressResponse:
+    title: CreateAddressResponse
+    example:
+      id: 11
+      full_address: Jl. Sopo Del
+      recipient_name: Rizky Ashari
+      recipient_phone_number: 6285722326522
+      CreatedAt: 2022-12-02T18:50:53.795335+07:00
+      UpdatedAt: 2022-12-02T18:50:53.795335+07:00
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int64
+      full_address:
+        type: string
+      recipient_name:
+        type: string
+      recipient_phone_number:
+        type: integer
+        format: int64
+      CreatedAt:
+        type: string
+      UpdatedAt:
+        type: string
+  UpdateAddressResponse:
+    title: UpdateAddressResponse
+    example:
+      id: 13
+      full_address: Gang Rawa Simprug VIII
+      recipient_name: Dedy Irawan
+      recipient_phone_number: 6285722320622
+      CreatedAt: 2022-12-02T18:50:53.795335+07:00
+      UpdatedAt: 2022-12-02T18:50:53.795335+07:00
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int64
+      full_address:
+        type: string
+      recipient_name:
+        type: string
+      recipient_phone_number:
+        type: integer
+        format: int64
+      CreatedAt:
+        type: string
+      UpdatedAt:
+        type: string
+  DeleteAddressResponse:
+    title: DeleteAddressResponse
+    example:
+      status: true
+      message: Deleted
+      errors: null
+      data: {}
+    type: object
+    properties:
+      status:
+        type: boolean
+      message:
+        type: string
+      errors:
+        type: object
+      data:
+        type: object
+  GetAddressByIDResponse:
+    title: GetAddressByIDResponse
+    example:
+      status: true
+      message: OK
+      errors: null
+      data: {
+        id: 11,
+        user: {
+          id: 4,
+          name: Doni Ahmad,
+          email: doniahmad@email.com,
+          phone_number: 6285722320622,
+          role: User,
+          referral_code: DONI3061,
+          balance: 0,
+          photos: https://res.cloudinary.com/dmlzx9yxe/image/upload/v1669964733/wazdcvhu1lzoqp6v6lqo.jpg,
+          },
+        full_address: Jl. Sopo Del,
+        recipient_name: Rizky Ashari,
+        recipient_phone_number: 6285722326522,
+        CreatedAt: 2022-12-02T18:50:53.795335+07:00,
+        UpdatedAt: 2022-12-02T18:50:53.795335+07:00
+      }
+    type: object
+    properties:
+      status:
+        type: boolean
+      message:
+        type: string
+      errors:
+        type: object
+      data:
+        type: object
+  GetAddressResponse:
+    title: GetAddressResponse
+    example:
+      status: true
+      message: OK
+      errors: null
+      data: [
+       {
+        id: 11,
+        user: {
+          id: 4,
+          name: Doni Ahmad,
+          email: doniahmad@email.com,
+          phone_number: 6285722320622,
+          role: User,
+          referral_code: DONI3061,
+          balance: 0,
+          photos: https://res.cloudinary.com/dmlzx9yxe/image/upload/v1669964733/wazdcvhu1lzoqp6v6lqo.jpg,
+          },
+        full_address: Jl. Sopo Del,
+        recipient_name: Rizky Ashari,
+        recipient_phone_number: 6285722326522,
+        CreatedAt: 2022-12-02T18:50:53.795335+07:00,
+        UpdatedAt: 2022-12-02T18:50:53.795335+07:00
+       },
+       {
+        id: 14,
+        user: {
+          id: 4,
+          name: Doni Ahmad,
+          email: doniahmad@email.com,
+          phone_number: 6285722320622,
+          role: User,
+          referral_code: DONI3061,
+          balance: 0,
+          photos: https://res.cloudinary.com/dmlzx9yxe/image/upload/v1669964733/wazdcvhu1lzoqp6v6lqo.jpg,
+          },
+        full_address: Jl. Rawa Simprug,
+        recipient_name: Andi Mallarangeng,
+        recipient_phone_number: 6285788792345,
+        CreatedAt: 2022-12-03T11:48:18.490002+07:00,
+        UpdatedAt: 2022-12-03T11:48:18.490002+07:00
+       }
+      ]
+    type: object
+    properties:
+      status:
+        type: boolean
+      message:
+        type: string
+      errors:
+        type: object
+      data:
+        type: array
+  PostShippingResponse:
+    title: PostShippingResponse
+    example:
+      status: true
+      message: OK
+      errors: null
+      data: {
+        id: 64,
+        user: {
+          id: 4,
+          name: Doni Ahmad,
+          email: doniahmad@email.com,
+          phone_number: 6285722320622,
+          role: User,
+          referral_code: DONI3061,
+          balance: 0,
+          photos: https://res.cloudinary.com/dmlzx9yxe/image/upload/v1669964733/wazdcvhu1lzoqp6v6lqo.jpg
+        },
+        size: {
+          id: 3,
+          name: Small,
+          description: VOLUME <= 25x25x525 cm OR WEIGHT <= 2 kg,
+          price: 75000
+        },
+        address: {
+          id: 0,
+          user: {
+            id: 0,
+            name: "",
+            email: "",
+            phone_number: 0,
+            role: "",
+            referral_code": "",
+            balance: 0,
+            photos: ""
+          },
+          full_address: "",
+          recipient_name: "",
+          recipient_phone_number: 0,
+          CreatedAt: 0001-01-01T00:00:00Z,
+          UpdatedAt: 0001-01-01T00:00:00Z
+        },
+        payment: {
+          id: 0,
+          user: {
+            id: 0,
+            name: "",
+            email: "",
+            phone_number: 0,
+            role: "",
+            referral_code: "",
+            balance: 0,
+            photos: ""
+          },
+          payment_status: "",
+          total_cost: 0,
+          promo: {
+            id: 0,
+            name: "",
+            min_fee: 0,
+            max_discount: 0,
+            discount: 0,
+            quota: 0
+          }
+        },
+        category: {
+          id: 2,
+          name: Fragile,
+          description: Send your fragile package safely with us,
+          price: 25000
+        },
+        add_on: {
+          id: 1,
+          name: Safe package,
+          description: Add more protection for your package,
+          price: 50000
+        },
+        shipping_status: Waiting for payment,
+        review: "",
+        CreatedAt: 2022-12-04T19:53:13.11427+07:00,
+        UpdatedAt: 2022-12-04T19:53:13.11427+07:00
+      }
+    type: object
+    properties:
+      status:
+        type: boolean
+      message:
+        type: string
+      errors:
+        type: object
+      data:
+        type: object    
+  GetShippingResponse:
+    title: GetShippingResponse
+    example:
+      meta: {
+        message: get shipping success,
+        code: 200,
+        status: success
+      }
+      data: {
+        current_page: 1,
+        data: [
+        {
+        id: 64,
+        size: {
+        name: Small,
+        price: 75000
+        },
+        category: {
+        name: Fragile,
+        price: 25000
+        },
+        add_on: {
+        name: Safe package,
+        price: 50000
+        },
+        address: {
+          id: 13,
+          recipient_name: "",
+          full_address: ""
+        },
+        payment: {
+          id: 0,
+          payment_status: ""
+        },
+        shipping_status: Waiting for payment,
+        CreatedAt: 2022-12-04T19:53:13.11427+07:00,
+        UpdatedAt: 2022-12-04T19:53:13.11427+07:00
+        },
+        {
+        id: 55,
+        size: {
+        name: Small,
+        price: 75000
+        },
+        category: {
+        name: Fragile,
+        price: 25000
+        },
+        add_on: {
+          name: Safe package,
+          price: 50000
+        },
+        address: {
+          id: 14,
+          recipient_name: Andi Malarangeng,
+          full_address: Jl. Sopo Del
+        },
+        payment: {
+          id: 0,
+          payment_status: ""
+        },
+        shipping_status: Waiting for payment,
+        CreatedAt: 2022-12-03T11:49:16.934364+07:00,
+        UpdatedAt: 2022-12-03T11:49:16.934364+07:00
+        }
+        ],
+        first_page_url: /shipping?page=1,
+        from: 1,
+        last_page: 1,
+        last_page_url: /shipping?page=1,
+        next_page_url: "",
+        path: /shipping,
+        per_page: 10,
+        prev_page_url: "",
+        to: 2,
+        total: 2
+      }
+    type: object
+    properties:
+      meta:
+        type: object
+      data:
+        type: object
+  GetShippingByIDResponse:
+    title: GetShippingByIDResponse
+    example:
+      status: true
+      message: OK
+      errors: null
+      data: {
+        id: 64,
+        user: {
+          id: 4,
+          name: Doni Ahmad,
+          email: doniahmad@email.com,
+          phone_number: 6285722320622,
+          role: User,
+          referral_code: DONI3061,
+          balance: 0,
+          photos: https://res.cloudinary.com/dmlzx9yxe/image/upload/v1669964733/wazdcvhu1lzoqp6v6lqo.jpg,
+          },
+        size: {
+          id: 3,
+          name: Small,
+          description: VOLUME <= 25x25x525 cm OR WEIGHT <= 2 kg,
+          price: 75000
+        },
+        address: {
+          id: 0,
+          user: {
+            id: 0,
+            name: "",
+            email": "",
+            phone_number: 0,
+            role: "",
+            referral_code: "",
+            balance: 0,
+            photos: ""
+          },
+          full_address: "",
+          recipient_name: "",
+          recipient_phone_number: 0,
+          CreatedAt: 0001-01-01T00:00:00Z,
+          UpdatedAt: 0001-01-01T00:00:00Z
+        },
+        payment: {
+          id: 0,
+          user: {
+            id: 0,
+            name: "",
+            email: "",
+            phone_number: 0,
+            role: "",
+            referral_code: "",
+            balance: 0,
+            photos: ""
+          },
+          payment_status: "",
+          total_cost: 0,
+          promo: {
+            id: 0,
+            name: "",
+            min_fee: 0,
+            max_discount: 0,
+            discount: 0,
+            quota: 0
+          }
+        },
+        category: {
+          id: 2,
+          name: Fragile,
+          description: Send your fragile package safely with us,
+          price": 25000
+        },
+        add_on: {
+          id: 1,
+          name: Safe package,
+          description: Add more protection for your package,
+          price: 50000
+        },
+        shipping_status: Waiting for payment,
+        review: "",
+        CreatedAt: 2022-12-04T19:53:13.11427+07:00,
+        UpdatedAt: 2022-12-04T19:53:13.11427+07:00
+          }
+    type: object
+    properties:
+      status:
+        type: boolean
+      message:
+        type: string
+      errors:
+        type: object
+      data:
+        type: object
+  UpdateShippingResponse:
+    title: UpdateShippingResponse
+    example:
+      status: true,
+      message: OK,
+      errors: null,
+      data: {
+        id: 55,
+        user: {
+          id: 4,
+          name: Doni Ahmad,
+          email: doniahmad@email.com,
+          phone_number: 6285722320622,
+          role: User,
+          referral_code: DONI3061,
+          balance: 0,
+          photos: https://res.cloudinary.com/dmlzx9yxe/image/upload/v1669964733/wazdcvhu1lzoqp6v6lqo.jpg
+          
+        },
+        size: {
+          id: 3,
+          name: Small,
+          description: VOLUME <= 25x25x525 cm OR WEIGHT <= 2 kg,
+          price: 75000
+        },
+        address: {
+          id: 14,
+          user: {
+            id: 4,
+            name: Doni Ahmad,
+            email: doniahmad@email.com,
+            phone_number: 6285722320622,
+            role: User,
+            referral_code: DONI3061,
+            balance: 0,
+            photos: https://res.cloudinary.com/dmlzx9yxe/image/upload/v1669964733/wazdcvhu1lzoqp6v6lqo.jpg
+          },
+          full_address: Jl. Sopo Del,
+          recipient_name: Andi Malarangeng,
+          recipient_phone_number: 6285722326522,
+          CreatedAt: 2022-12-03T11:48:18.490002+07:00,
+          UpdatedAt: 2022-12-03T11:48:18.490002+07:00
+        },
+        payment: {
+          id: 95,
+          payment_status: Paid,
+          total_cost": 150000,
+          promo: {
+            id: 0,
+            name: "",
+            min_fee: 0,
+            max_discount: 0,
+            discount: 0,
+            quota: 0
+          }
+        },
+        category: {
+          id: 2,
+          name: Fragile,
+          description": Send your fragile package safely with us,
+          price: 25000
+        },
+        add_on: {
+          id: 1,
+          name: Safe package,
+          description: Add more protection for your package,
+          price: 50000
+        },
+        shipping_status: "Package is arrived in destination address: done",
+        review: "OK Boss",
+        CreatedAt: 2022-12-03T11:49:16.934364+07:00,
+        UpdatedAt: 2022-12-03T11:49:16.934364+07:00
+      }
+      type: object
+      properties:
+            status:
+              type: boolean
+            message:
+              type: string
+            errors:
+              type: object
+            data:
+              type: object   
+  DeleteShippingResponse:
+        title: DeleteShippingResponse
+        example:
+          status: true
+          message: Deleted
+          errors: null
+          data: {}
+        type: object
+        properties:
+          status:
+            type: boolean
+          message:
+            type: string
+          errors:
+            type: object
+          data:
+            type: object
+  TopUpResponse:
+        title: TopUpResponse
+        example:
+          meta: {
+            message: "top up success",
+            code: 200,
+            status: "success"
+          }
+          data: {
+            id: 70,
+            source_of_fund: "Bank",
+            amount: 2500000,
+            balance: 2500000,
+            description: "Top Up from Bank",
+            category: "Top Up",
+            created_at: "2022-12-04T20:53:36.423020478+07:00",
+            updated_at: "2022-12-04T20:53:36.423020478+07:00"
+          }
+        type: object
+        properties:
+          meta:
+            type: object
+          data:
+            type: object
+  PaymentResponse:
+        title: PaymentResponse
+        example:
+          meta: {
+            message: "payment success",
+            code: 200,
+            status: "success"
+          }
+          data: {
+            id: 74,
+            destination: {
+              name: "Doni Ahmad",
+              id: 23
+            },
+            amount: 230000,
+            description: "",
+            category: "Send Package",
+            created_at: "2022-12-04T21:05:48.857875159+07:00",
+            updated_at: "2022-12-04T21:05:48.857875159+07:00"
+              }
+        type: object
+        properties:
+          meta:
+            type: object
+          data:
+            type: object
+  GetAllPaymentsResponse:
+    title: GetAllPaymentsResponse
+    example:
+      status: true
+      message: "OK"
+      errors: null
+      data: [
+        {
+          id: 1,
+          user: {
+            id: 2,
+            name: "Moh Rizky Ashari ",
+            email: "rizkyashari@gmail.com",
+            phone_number: 6285722320622,
+            role: "User",
+            referral_code: "RIZK0967",
+            balance: 3245000,
+            photos: "https://res.cloudinary.com/dmlzx9yxe/image/upload/v1669795327/h9ydfepnjuandqwpwnjf.jpg"
+          },
+          payment_status: "Paid",
+          total_cost: 145000,
+          promo: {
+            id: 0,
+            name: "",
+            min_fee: 0,
+            max_discount: 0,
+            discount: 0,
+            quota: 0
+          }
+        },
+        {
+          id: 2,
+          user: {
+            id: 3,
+            name: "Dedy Irawan",
+            email: "dedy@gmail.com",
+            phone_number: 6285722329090,
+            role: "User",
+            referral_code: "DEDY8190",
+            balance: 10360000,
+            photos: "https://res.cloudinary.com/dmlzx9yxe/image/upload/v1669964809/rjbj2ccw3acf2ml0ouey.png"
+          },
+          payment_status: "Paid with Promo",
+          total_cost: 180000,
+          promo: {
+            id: 1,
+            name: "40% discount vouchers",
+            min_fee: 20000,
+            max_discount: 15000,
+            discount: 40,
+            quo: 40
+          }
+        },
+       ]
+    type: object
+    properties:
+      status:
+        type: boolean
+      message:
+        type: string
+      errors:
+        type: object
+      data:
+        type: array
+  PostUserPromoResponse:
+    title: PostUserPromoResponse
+    example:
+      status: true
+      message: OK
+      errors: null
+      data: {
+        id: 218,
+        user: {
+          id: 3,
+          name: "Dedy Irawan",
+          email: "dedy@gmail.com",
+          phone_number: 6285722329090,
+          role: "User",
+          referral_code: "DEDY8190",
+          balance: 10360000,
+          photos: "https://res.cloudinary.com/dmlzx9yxe/image/upload/v1669964809/rjbj2ccw3acf2ml0ouey.png"
+        },
+        promo: {
+          id: 2,
+          name: "60% discount vouchers",
+          min_fee: 20000,
+          max_discount: 15000,
+          discount: 60,
+          quota: 40
+        },
+        status: 0
+          }
+    type: object
+    properties:
+      status:
+        type: boolean
+      message:
+        type: string
+      errors:
+        type: object
+      data:
+        type: object
+  GetAllUserPromosResponse:
+    title: GetAllUserPromosResponse
+    example:
+      status: true
+      message: "OK"
+      errors: null
+      data: [
+        {
+        id: 218,
+        user: {
+          id: 3,
+          name: "Dedy Irawan",
+          email: "dedy@gmail.com",
+          phone_number: 6285722329090,
+          role: "User",
+          referral_code: "DEDY8190",
+          balance: 10360000,
+          photos: "https://res.cloudinary.com/dmlzx9yxe/image/upload/v1669964809/rjbj2ccw3acf2ml0ouey.png"
+        },
+        promo: {
+          id: 2,
+          name: "60% discount vouchers",
+          min_fee: 20000,
+          max_discount: 15000,
+          discount: 60,
+          quota: 40
+        },
+        status: 0
+       },
+        {
+          id: 219,
+          user: {
+            id: 3,
+            name: "Dedy Irawan",
+            email: "dedy@gmail.com",
+            phone_number: 6285722329090,
+            role: "User",
+            referral_code: "DEDY8190",
+            balance: 10360000,
+            photos: "https://res.cloudinary.com/dmlzx9yxe/image/upload/v1669964809/rjbj2ccw3acf2ml0ouey.png"
+        },
+        promo: {
+          id: 3,
+          name: "80% discount voucher uhuyy",
+          min_fee: 20000,
+          max_discount: 15000,
+          discount: 80,
+          quota: 120
+        },
+        status: 0
+        },
+       ]
+    type: object
+    properties:
+      status:
+        type: boolean
+      message:
+        type: string
+      errors:
+        type: object
+      data:
+        type: array
+  UpdateUserPromoResponse:
+    title: UpdateUserPromoResponse
+    example:
+      status: true
+      message: Deleted
+      errors: null
+      data: {
+        id: 5,
+        user: {
+          id: 3,
+          name: "Dedy Irawan",
+          email: "dedy@gmail.com",
+          phone_number: 6285722329090,
+          role: "User",
+          referral_code: "DEDY8190",
+          balance: 10360000,
+          photos: "https://res.cloudinary.com/dmlzx9yxe/image/upload/v1669964809/rjbj2ccw3acf2ml0ouey.png"
+        },
+        promo: {
+          id: 1,
+          name: "40% discount vouchers",
+          min_fee: 20000,
+          max_discount: 15000,
+          discount: 40,
+          quota: 40
+        },
+        status: 1
+      }
+    type: object
+    properties:
+      status:
+        type: boolean
+      message:
+        type: string
+      errors:
+        type: object
+      data:
+        type: object
+  GetAllUserAddressesResponse:
+    title: GetAllUserAddressesResponse
+    example:
+      status: true
+      message: "OK"
+      errors: null
+      data: [
+        {
+          id: 8,
+          user: {
+            id: 3,
+            name: "Dedy Irawan",
+            email: "dedy@gmail.com",
+            phone_number: 6285722329090,
+            role: "User",
+            referral_code: "DEDY8190",
+            balance: 10360000,
+            photos: "https://res.cloudinary.com/dmlzx9yxe/image/upload/v1669964809/rjbj2ccw3acf2ml0ouey.png"
+          },
+          full_address: "Jl Bekasi Timur",
+          recipient_name: "Ahmad Sahroni",
+          recipient_phone_number: 6285722320622,
+          CreatedAt: "2022-11-30T12:37:41.025502+07:00",
+          UpdatedAt: "2022-11-30T12:37:41.025502+07:00"
+        },
+        {
+        id: 9,
+        user: {
+          id: 2,
+          name: "Moh Rizky Ashari ",
+          email: "rizkyashari@gmail.com",
+          phone_number: 6285722320622,
+          role": "User",
+          referral_code: "RIZK0967",
+          balance: 3245000,
+          "photos": "https://res.cloudinary.com/dmlzx9yxe/image/upload/v1669795327/h9ydfepnjuandqwpwnjf.jpg"
+        },
+        full_address: "Jalan Melati No. 43",
+        recipient_name: "Fauzi Agustian",
+        recipient_phone_number: 62867777777,
+        CreatedAt: "2022-11-30T13:39:28.082919+07:00",
+        UpdatedAt: "2022-11-30T13:39:28.082919+07:00"
+        },
+       ]
+    type: object
+    properties:
+      status:
+        type: boolean
+      message:
+        type: string
+      errors:
+        type: object
+      data:
+        type: array
+  AdminUpdateShippingResponse:
+    title: AdminUpdateShippingResponse
+    example:
+      status: true
+      message: "OK"
+      errors: null
+      data: {
+        id: 4,
+        user: {
+          id: 4,
+          name: "Doni Ahmad",
+          email: "doniahmad@email.com",
+          phone_number: 6285722320622,
+          role: "User",
+          referral_code: "DONI3061",
+          balance: 2270000,
+          photos: "https://res.cloudinary.com/dmlzx9yxe/image/upload/v1669964733/wazdcvhu1lzoqp6v6lqo.jpg"
+        },
+        size: {
+          id: 1,
+          name: "Large",
+          description: "VOLUME > 50x50x50 cm OR WEIGHT > 3 kg",
+          price: 150000
+        },
+        address: {
+          id: 23,
+          user: {
+            id: 6,
+            name: "Doni Ahmad",
+            email: "doniahmad@gmail.com",
+            phone_number: 0,
+            role: "User",
+            referral_code: "DONI3798",
+            balance: 1540000,
+            photos: ""
+          },
+          full_address: "Jl Imam Asyhari",
+          recipient_name: "Fauzi Agustian",
+          recipient_phone_number: 6285722320622,
+          CreatedAt: "2022-12-04T20:29:03.903803+07:00",
+          UpdatedAt: "2022-12-04T20:29:03.903803+07:00"
+        },
+        payment: {
+          id: 64,
+          user: {
+            id: 4,
+            name: "Doni Ahmad",
+            email: "doniahmad@email.com",
+            phone_number: 6285722320622,
+            role: "User",
+            referral_code: "DONI3061",
+            balance: 2270000,
+            photos: "https://res.cloudinary.com/dmlzx9yxe/image/upload/v1669964733/wazdcvhu1lzoqp6v6lqo.jpg"
+          },
+          payment_status: "Paid with Promo",
+          total_cost: 230000,
+          promo: {
+            "id": 0,
+            "name": "",
+            "min_fee": 0,
+            "max_discount": 0,
+            "discount": 0,
+            "quota": 0
+          }
+        },
+        category: {
+          id: 1,
+          name: "Food and Beverages",
+          description: "Send your food or beverages safely with us",
+          price: 30000
+        },
+        add_on: {
+          id: 2,
+          name: "Cooler",
+          description: "Keep your food or drink cool",
+          price: 20000
+        },
+        shipping_status: "Package is arrived in destination address: done",
+        review: "",
+        CreatedAt: "0001-01-01T07:07:12+07:07",
+        UpdatedAt: "2022-12-04T22:34:19.691154+07:00"
+          }
+    type: object
+    properties:
+      status:
+        type: boolean
+      message:
+        type: string
+      errors:
+        type: object
+      data:
+        type: object
+  AdminGetAllShippingsResponse:
+    title: AdminGetAllShippingsResponse
+    example:
+      status: true
+      message: "OK"
+      errors: null
+      data: [
+          {
+          id: 2,
+          user: {
+            id: 2,
+            name: "Moh Rizky Ashari ",
+            email: "rizkyashari@gmail.com",
+            phone_number: 6285722320622,
+            role: "User",
+            referral_code: "RIZK0967",
+            balance: 3245000,
+            photos: "https://res.cloudinary.com/dmlzx9yxe/image/upload/v1669795327/h9ydfepnjuandqwpwnjf.jpg"
+          },
+          size: {
+            id: 2,
+            name: "Medium",
+            description: "25x25x25 cm < VOLUME <= 50x50x50 cm OR 2 kg < WEIGHT <= 3 kg",
+            price: 100000
+          },
+          address: {
+            id: 0,
+            full_address: "",
+            recipient_name: "",
+            recipient_phone_number: 0,
+            CreatedAt: "0001-01-01T00:00:00Z",
+            UpdatedAt: "0001-01-01T00:00:00Z"
+          },
+          payment: {
+            id: 1,
+            user: {
+              id: 2,
+              name: "Moh Rizky Ashari ",
+              email: "rizkyashari@gmail.com",
+              phone_number: 6285722320622,
+              role: "User",
+              referral_code: "RIZK0967",
+              balance: 3245000,
+              photos: "https://res.cloudinary.com/dmlzx9yxe/image/upload/v1669795327/h9ydfepnjuandqwpwnjf.jpg"
+            },
+            payment_status: "Paid",
+            total_cost: 145000,
+          },
+          category: {
+            id: 2,
+            name: "Fragile",
+            description: "Send your fragile package safely with us",
+            price: 25000
+          },
+          add_on: {
+            id: 2,
+            name: "Cooler",
+            description: "Keep your food or drink cool",
+            price: 20000
+          },
+          shipping_status: "Package is arrived in destination address: done",
+          review: "Oke boss",
+          CreatedAt: "0001-01-01T07:07:12+07:07",
+          UpdatedAt: "2022-11-29T15:31:18.425215+07:00"
+        },
+        {
+        id: 5,
+        user: {
+          id: 3,
+          name: "Dedy Irawan",
+          email: "dedy@gmail.com",
+          phone_number: 6285722329090,
+          role: "User",
+          referral_code: "DEDY8190",
+          balance: 10360000,
+          photos: "https://res.cloudinary.com/dmlzx9yxe/image/upload/v1669964809/rjbj2ccw3acf2ml0ouey.png"
+        },
+        size: {
+          id: 1,
+          name: "Large",
+          description: "VOLUME > 50x50x50 cm OR WEIGHT > 3 kg",
+          price: 150000
+        },
+        address: {
+          id: 4,
+          user: {
+            id: 3,
+            name: "Dedy Irawan",
+            email: "dedy@gmail.com",
+            phone_number: 6285722329090,
+            role: "User",
+            referral_code: "DEDY8190",
+            balance: 10360000,
+            photos: "https://res.cloudinary.com/dmlzx9yxe/image/upload/v1669964809/rjbj2ccw3acf2ml0ouey.png"
+          },
+        full_address: "Jalan Melati No. 43",
+        recipient_name: "Ahmad Sahroni",
+        recipient_phone_number: 6285722320622,
+        CreatedAt: "2022-11-29T15:35:54.168777+07:00",
+        UpdatedAt: "2022-11-29T15:35:54.168777+07:00"
+        },
+        payment: {
+          id: 2,
+          user: {
+            id: 3,
+            name: "Dedy Irawan",
+            email: "dedy@gmail.com",
+            phone_number: 6285722329090,
+            role: "User",
+            referral_code: "DEDY8190",
+            balance": 10360000,
+            photos: "https://res.cloudinary.com/dmlzx9yxe/image/upload/v1669964809/rjbj2ccw3acf2ml0ouey.png"
+          },
+          payment_status: "Paid",
+          total_cost: 180000,
+        },
+        category: {
+          id: 2,
+          name: "Fragile",
+          description: "Send your fragile package safely with us",
+          price: 25000
+        },
+        add_on: {
+          id: 2,
+          name: "Cooler",
+          description: "Keep your food or drink cool",
+          price: 20000
+        },
+        shipping_status: "Paid: delivery is being prepared",
+        review: "",
+        CreatedAt: "2022-11-29T15:36:54.458262+07:00",
+        UpdatedAt: "2022-11-29T15:37:03.976972+07:00"
+        },
+        ]
+    type: object
+    properties:
+      status:
+        type: boolean
+      message:
+        type: string
+      errors:
+        type: object
+      data:
+        type: array
+  AdminGetPromoByIDResponse:
+    title: AdminGetPromoByIDResponse
+    example:
+      status: true
+      message: Deleted
+      errors: null
+      data: {
+        id: 1,
+        name: "40% discount vouchers",
+        min_fee: 20000,
+        max_discount: 15000,
+        discount: 40,
+        quota: 40
+      }
+    type: object
+    properties:
+      status:
+        type: boolean
+      message:
+        type: string
+      errors:
+        type: object
+      data:
+        type: object
+  AdminUpdatePromoResponse:
+    title: AdminUpdatePromoResponse
+    example:
+      status: true
+      message: Deleted
+      errors: null
+      data: {
+        id: 1,
+        name: "40% discount vouchers",
+        min_fee: 20000,
+        max_discount: 15000,
+        discount: 40,
+        quota: 100
+      }
+    type: object
+    properties:
+      status:
+        type: boolean
+      message:
+        type: string
+      errors:
+        type: object
+      data:
+        type: object
+  GetAllPromosResponse:
+    title: GetAllPromosResponse
+    example:
+      status: true
+      message: Deleted
+      errors: null
+      data: [
+        {
+          id: 1,
+          name: "40% discount vouchers",
+          min_fee: 20000,
+          max_discount: 15000,
+          discount: 40,
+          quota: 100
+        },
+        {
+          id: 2,
+          name: "60% discount vouchers",
+          min_fee: 20000,
+          max_discount: 15000,
+          discount: 60,
+          quota: 40
+        },
+        {
+          id: 3,
+          name: "80% discount voucher uhuyy",
+          min_fee: 20000,
+          max_discount: 15000,
+          discount: 80,
+          quota: 120
+        }
+      ]
+    type: object
+    properties:
+      status:
+        type: boolean
+      message:
+        type: string
+      errors:
+        type: object
+      data:
+        type: object
+  GetReferralsResponse:
+    title: GetReferralsResponse
+    example:
+      status: true
+      message: Deleted
+      errors: null
+      data: [
+        "DEDY8190",
+        "DONI3798",
+        "DONI3061",
+        "RIZK0967",
+        "AHMA8013",
+        "DONI9250",
+        "ANDI0659"
+        ]
+    type: object
+    properties:
+      status:
+        type: boolean
+      message:
+        type: string
+      errors:
+        type: object
+      data:
+        type: array
+security: []
+tags:
+- name: Auth Routes
+  description: ''
+- name: User Profiles Routes
+  description: ''
+- name: Address Routes
+  description: ''
+- name: Shipping Routes
+  description: ''
+- name: Top Up Routes
+  description: ''
+- name: Payment Routes
+  description: ''
+- name: User Promo Routes
+  description: ''
+- name: Admin Manage Addresses
+  description: ''
+- name: Admin Manage Shippings
+  description: ''
+- name: Admin Manage Promos
+  description: ''
+- name: Admin Manage Referrals
+  description: ''
