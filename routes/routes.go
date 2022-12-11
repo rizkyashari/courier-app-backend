@@ -90,6 +90,5 @@ func CourierRoutes() {
 	}
 
 	r.Static("./dist", "dist/")
-	// r.Run(":8080")
 	r.Run()
 }
